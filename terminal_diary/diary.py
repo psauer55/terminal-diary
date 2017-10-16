@@ -4,16 +4,14 @@ import time
 import datetime
 today = str(datetime.date.today()).replace("-",'_')
 timestamp =  str(datetime.datetime.now()).split(".")[0]
-here = os.path.abspath(os.path.dirname(__file__))
-os.chdir(here)
-data_path = open(here+"/../DIARY_LOC").read()
-os.chdir("../../../../../../../")
-os.chdir(data_path)
-if not os.path.exists("diary.noindex"):
-    # .noindex dirrectory are not indexed in Mac's Spotlight
-    # This way the diary directory stays privated and would not show up in search 
-    os.system("mkdir {}".format("diary.noindex"))
-os.chdir("diary.noindex")
+
+home = os.path.expanduser("~")
+datapath = os.environ.get("TERMINAL_NOTES_DIR", "{}/terminal-notes".format(home)).join("diary.noindex")
+
+if not os.path.exists(datapath):
+    os.makedirs(datapath)
+os.chdir(datapath)
+
 def main(args=None):
     try:
         score = sys.argv[1]

@@ -1,5 +1,7 @@
 setup.cfg
 setup.py
+terminal_diary/DIARY_LOC
+terminal_diary/FILE_LOC
 terminal_diary/__init__.py
 terminal_diary/__main__.py
 terminal_diary/diary.py
